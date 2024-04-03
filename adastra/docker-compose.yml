@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: adastra-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000" 
+    networks:
+      - adastra-app
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy  
+
+  db:
+    container_name: mysql-db
+    image: mysql:latest
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"  
+      MYSQL_DATABASE: phones 2.0    
+    networks:
+      - adastra-app
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d  
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root"]  
+      interval: 10s
+      retries: 3
+      timeout: 5s
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306  
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "8001:80"
+    networks:
+      - adastra-app
+    depends_on:
+      - db
+
+networks:
+  adastra-app:
+    driver: bridge
+
+volumes:
+  db_data:

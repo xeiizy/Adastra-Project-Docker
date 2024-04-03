@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Menu</title>
+    <style>
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            border: 2px solid #333;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        /* Float the list items side by side */
+        .menu li {
+            float: left;
+        }
+
+        /* Style the links inside the menu */
+        .menu li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Change the link color to #111 (black) on hover */
+        .menu li a:hover {
+            background-color: #111;
+        }
+
+        /* Style the active link */
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Database Menu</h1>
+    <div class="box">
+        <p>Access the following databases:</p>
+        <ul class="menu">
+            <li><a href="/users" class="{% if active_page == 'users' %}active{% endif %}">Users Database</a></li>
+            <li><a href="/phones" class="{% if active_page == 'phones' %}active{% endif %}">Phones Database</a></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

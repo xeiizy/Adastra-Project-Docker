@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Menu</title>
+    <style>
+        /* Style the menu */
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        
+        /* Float the list items side by side */
+        .menu li {
+            float: left;
+        }
+        
+        /* Style the links inside the menu */
+        .menu li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        /* Change the link color to #111 (black) on hover */
+        .menu li a:hover {
+            background-color: #111;
+        }
+
+        /* Style the active link */
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="menu">
+    <li><a href="/users" class="{% if active_page == 'users' %}active{% endif %}">Users</a></li>
+    <li><a href="/phones" class="{% if active_page == 'phones' %}active{% endif %}">Phones</a></li>
+</ul>
+
+</body>
+</html>
